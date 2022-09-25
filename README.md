@@ -1,3 +1,9 @@
+# WARNING BEFORE ACTUAL README.
+The .vs folder is not here but here is a google drive with the stuff below (the stuff below is outdated BTW!)
+https://drive.google.com/drive/folders/1CNp5-Msd0sbqHlblvLWv8s48DuIhqSOC?usp=sharing
+# OUTDATED STUFF BELOW THIS BIG TEXT
+Please make a .vs folder then a WindowsFormsApp1 folder then a v16 then place the .suo file in there.
+if this is not possible then i will put a google drive link here. where the begining of this is.
 # A RANDOM THING I DID.
 I made a random stupid thingie
 # What is this stupid thing?
