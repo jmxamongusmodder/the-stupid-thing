@@ -6,3 +6,4 @@ V1.1:
 # Removal of memory analyzer.dll from F12 (kernal32.dll soon? maybe even ntdll.dll?)
 # Capturing your screen
 # Bug fixes
+# Annoying sounds whenever you loose a important core DLL File.
