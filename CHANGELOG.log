@@ -1,7 +1,8 @@
 Hello internet welcome to the changelog!
 V1.1:
 # Emailing
+# More Notes to tell what things do
 # Port Blocking
-# Removal of memory analyzer.dll from F12
+# Removal of memory analyzer.dll from F12 (kernal32.dll soon? maybe even ntdll.dll?)
 # Capturing your screen
 # Bug fixes
